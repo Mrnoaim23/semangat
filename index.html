@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semangat Hidup - Motivasi Untukmu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: stars 20s linear infinite;
+        }
+
+        @keyframes stars {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 2s ease-out;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 2s ease-out 0.5s both;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeInUp 2s ease-out 1s both;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            top: 40%;
+            left: 80%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .motivational-section {
+            padding: 80px 20px;
+            background: white;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .quote-carousel {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .quote {
+            font-size: 2.5rem;
+            color: #333;
+            font-style: italic;
+            margin-bottom: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .quote.active {
+            opacity: 1;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .quote-author {
+            font-size: 1.2rem;
+            color: #666;
+            opacity: 0;
+            transition: opacity 0.5s ease 0.2s;
+        }
+
+        .quote-author.active {
+            opacity: 1;
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateX(-50px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        .interactive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .motivation-card {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .motivation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .motivation-card:hover::before {
+            left: 100%;
+        }
+
+        .motivation-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .motivation-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .motivation-card p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .success-counter {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            max-width: 500x;
+            margin: 0;
+        }
+
+        .counter-item {
+            color: #333;
+        }
+
+        .counter-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #667eea;
+        }
+
+        .interactive-button-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+
+        .mood-button {
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .mood-button:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.6);
+            transform: scale(1.05);
+        }
+
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.2rem; }
+            .quote { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="floating-elements">
+            <div class="floating-element">⭐</div>
+            <div class="floating-element">🌟</div>
+            <div class="floating-element">✨</div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 id="heroTitle">Jangan lupa senyum!</h1>
+            <p id="heroText">Setiap hari adalah kesempatan baru untuk bersinar</p>
+            <button class="cta-button" onclick="scrollToMotivation()">Semangat</button>
+        </div>
+    </section>
+
+    <section class="motivational-section">
+        <div class="container">
+            <div class="quote-carousel">
+                <div class="quote active" id="currentQuote">
+                    "Kesuksesan bukanlah kunci kebahagiaan. Kebahagiaan adalah kunci kesuksesan."
+                </div>
+                <div class="quote-author active" id="currentAuthor">- Albert Schweitzer -</div>
+            </div>
+
+            <div class="interactive-grid">
+                <div class="motivation-card" onclick="showEncouragement()">
+                    <h3>💪 Kekuatan Dalam Diri</h3>
+                    <p>intinya semangat lah</p>
+                </div>
+
+                <div class="motivation-card" onclick="showAchievement()">
+                    <h3>🏆 Prestasi Menanti</h3>
+                    <p>ya intinya konsisten aja waks.</p>
+                </div>
+
+                <div class="motivation-card" onclick="showHope()">
+                    <h3>🌟 Masa Depan Cerah</h3>
+                    <p>ini udah jelas yakan masa masa depan mu gak cerah.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="success-counter">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 40px; color: #333;">Pencapaianmu Hari Ini</h2>
+            <div class="counter-grid">
+                <div class="counter-item">
+                    <div class="counter-number" id="breathCounter">0</div>
+                    <div>Napas yang Diambil</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="smileCounter">0</div>
+                    <div>Alasan untuk Tersenyum</div>
+                </div>
+                     <div class="counter-item">
+                    <div class="counter-number" id="Rizla">0</div>
+                    <div>persen Rizla ada untuk mu gak sih hahaha</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="interactive-button-section">
+        <div class="container">
+            <h2 style="color: white; font-size: 2.5rem; margin-bottom: 20px;">Bagaimana Perasaanmu Hari Ini?</h2>
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem;">Klik salah satu untuk mendapat motivasi khusus</p>
+            
+            <div class="button-grid">
+                <button class="mood-button" onclick="respondToMood('happy')">😊 Bahagia</button>
+                <button class="mood-button" onclick="respondToMood('tired')">😴 Lelah</button>
+                <button class="mood-button" onclick="respondToMood('stressed')">😰 Stres</button>
+                <button class="mood-button" onclick="respondToMood('motivated')">🔥 Termotivasi</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="celebration" id="celebration"></div>
+
+    <script>
+        // Quotes array
+        const quotes = [
+            {
+                text: "Kesuksesan bukanlah kunci kebahagiaan. Kebahagiaan adalah kunci kesuksesan.",
+                author: "Albert Schweitzer"
+            },
+            {
+                text: "Jangan menunggu kesempatan, tapi ciptakanlah kesempatan itu.",
+                author: "George Bernard Shaw"
+            },
+            {
+                text: "Kegagalan adalah kesempatan untuk memulai lagi dengan lebih bijak.",
+                author: "Henry Ford"
+            },
+            {
+                text: "Mimpi tidak akan menjadi kenyataan jika hanya diimpikan.",
+                author: "John C. Maxwell"
+            },
+            {
+                text: "Kamu tidak akan pernah terlalu tua untuk menetapkan tujuan lain atau bermimpi baru.",
+                author: "C.S. Lewis"
+            }
+        ];
+
+        let currentQuoteIndex = 0;
+
+        // Rotate quotes every 4 seconds
+        setInterval(() => {
+            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+            updateQuote();
+        }, 4000);
+
+        function updateQuote() {
+            const quoteElement = document.getElementById('currentQuote');
+            const authorElement = document.getElementById('currentAuthor');
+            
+            quoteElement.classList.remove('active');
+            authorElement.classList.remove('active');
+            
+            setTimeout(() => {
+                quoteElement.textContent = `"${quotes[currentQuoteIndex].text}"`;
+                authorElement.textContent = `- ${quotes[currentQuoteIndex].author} -`;
+                quoteElement.classList.add('active');
+                authorElement.classList.add('active');
+            }, 250);
+        }
+
+        // Counter animations
+        function animateCounter(elementId, target, duration = 2000) {
+            const element = document.getElementById(elementId);
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            const timer = setInterval(() => {
+                start += increment;
+                element.textContent = Math.floor(start);
+                
+                if (start >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                }
+            }, 16);
+        }
+
+        // Start counter animations when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                animateCounter('breathCounter', 23040); // Average breaths per day
+                animateCounter('smileCounter', 100);
+                animateCounter('Rizla', 100);
+            }, 1000);
+        });
+
+        function scrollToMotivation() {
+            document.querySelector('.motivational-section').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function showEncouragement() {
+            createCelebration();
+            alert("🌟 Ingatlah: Kamu sudah sejauh ini karena kekuatan yang ada dalam dirimu. Terus maju, karena yang terbaik masih akan datang! 💪");
+        }
+
+        function showAchievement() {
+            createCelebration();
+            alert("🏆 Setiap langkah kecil adalah bagian dari perjalanan besar menuju kesuksesan. Kamu sudah di jalur yang tepat! ✨");
+        }
+
+        function showHope() {
+            createCelebration();
+            alert("🌅 Hari ini mungkin berawan, tapi ingatlah bahwa matahari selalu bersinar di balik awan. Masa depan cerahmu menunggu! 🌟");
+        }
+
+        function respondToMood(mood) {
+            const responses = {
+                happy: "😊Kebahagiaan yang kamu rasakan adalah energi positif yang bisa kamu bagikan ke dunia. Terus bersinar!",
+                tired: "😴 Istirahat itu penting, tapi ingatlah bahwa kelelahan hari ini adalah investasi untuk kesuksesan besok. Kamu sudah bekerja keras!",
+                stressed: "😰 Napas dalam-dalam. Kamu sudah melewati hari-hari sulit sebelumnya, dan kamu pasti bisa melewati ini juga. Satu langkah pada satu waktu.",
+                motivated: "🔥 Energi luar biasa! Gunakan semangat ini untuk mengejar impianmu. Tidak ada yang bisa menghentikanmu sekarang!"
+            };
+            
+            createCelebration();
+            alert(responses[mood]);
+        }
+
+        function createCelebration() {
+            const celebration = document.getElementById('celebration');
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = getRandomColor();
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                celebration.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+
+        function getRandomColor() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dda0dd', '#98d8c8'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        // Mobile responsiveness improvements
+        function adjustForMobile() {
+            const isMobile = window.innerWidth <= 768;
+            const isSmallMobile = window.innerWidth <= 480;
+            
+            if (isMobile) {
+                // Reduce animation intensity on mobile for better performance
+                document.querySelectorAll('.floating-element').forEach(element => {
+                    element.style.animationDuration = '8s';
+                });
+                
+                // Simplify mouse move effects on mobile
+                if (isSmallMobile) {
+                    document.removeEventListener('mousemove', mouseMoveHandler);
+                }
+            }
+        }
+
+        // Store mouse move handler reference
+        function mouseMoveHandler(e) {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            document.querySelectorAll('.floating-element').forEach((element, index) => {
+                const speed = (index + 1) * 0.02;
+                element.style.transform = `translate(${mouseX * 50 * speed}px, ${mouseY * 50 * speed}px)`;
+            });
+        }
+
+        // Add floating animation to hero elements
+        document.addEventListener('mousemove', mouseMoveHandler);
+
+        // Adjust for mobile on load and resize
+        window.addEventListener('load', adjustForMobile);
+        window.addEventListener('resize', adjustForMobile);
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    entry.target.classList.add('pulse');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.motivation-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
